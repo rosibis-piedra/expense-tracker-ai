@@ -7,7 +7,7 @@ import CategoryChart from '@/components/CategoryChart';
 import ExpenseForm from '@/components/ExpenseForm';
 import ExpenseList from '@/components/ExpenseList';
 import ExpenseFiltersComponent from '@/components/ExpenseFilters';
-import ExportButton from '@/components/ExportButton';
+import AdvancedExportModal from '@/components/AdvancedExportModal';
 
 export default function Home() {
   const {
@@ -24,6 +24,7 @@ export default function Home() {
   } = useExpenses();
 
   const [showAddForm, setShowAddForm] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
 
   const handleAddExpense = (data: any) => {
     addExpense(data);
@@ -69,7 +70,25 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <ExportButton expenses={filteredExpenses} />
+              <button
+                onClick={() => setShowExportModal(true)}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-primary-600 text-primary-600 rounded-lg hover:bg-primary-50 transition-colors font-medium"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  />
+                </svg>
+                Export Data
+              </button>
               <button
                 onClick={() => setShowAddForm(!showAddForm)}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium"
@@ -184,6 +203,13 @@ export default function Home() {
           </p>
         </div>
       </footer>
+
+      {/* Advanced Export Modal */}
+      <AdvancedExportModal
+        expenses={expenses}
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+      />
     </div>
   );
 }
