@@ -7,7 +7,7 @@ import CategoryChart from '@/components/CategoryChart';
 import ExpenseForm from '@/components/ExpenseForm';
 import ExpenseList from '@/components/ExpenseList';
 import ExpenseFiltersComponent from '@/components/ExpenseFilters';
-import ExportButton from '@/components/ExportButton';
+import CloudExportHub from '@/components/CloudExportHub';
 
 export default function Home() {
   const {
@@ -24,6 +24,7 @@ export default function Home() {
   } = useExpenses();
 
   const [showAddForm, setShowAddForm] = useState(false);
+  const [showCloudExport, setShowCloudExport] = useState(false);
 
   const handleAddExpense = (data: any) => {
     addExpense(data);
@@ -69,7 +70,13 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <ExportButton expenses={filteredExpenses} />
+              <button
+                onClick={() => setShowCloudExport(true)}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg shadow-indigo-200 font-medium"
+              >
+                <span className="text-lg">☁️</span>
+                Cloud Export
+              </button>
               <button
                 onClick={() => setShowAddForm(!showAddForm)}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium"
@@ -184,6 +191,13 @@ export default function Home() {
           </p>
         </div>
       </footer>
+
+      {/* Cloud Export Hub */}
+      <CloudExportHub
+        expenses={expenses}
+        isOpen={showCloudExport}
+        onClose={() => setShowCloudExport(false)}
+      />
     </div>
   );
 }
