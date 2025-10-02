@@ -140,7 +140,7 @@ export default function Home() {
                 </p>
               </div>
               <div>
-                <p className="text-sm text-gray-600">This month's expenses</p>
+                <p className="text-sm text-gray-600">This month&apos;s expenses</p>
                 <p className="text-xl font-bold text-gray-900">
                   {expenses.filter(exp => {
                     const expDate = new Date(exp.date);
