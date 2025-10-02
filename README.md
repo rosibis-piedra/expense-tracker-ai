@@ -1,4 +1,6 @@
-# Expense Tracker
+# 💰 Expense Tracker
+
+🔗 **[Live Demo](https://expense-tracker-ai-lime.vercel.app)**
 
 A modern, professional expense tracking application built with Next.js 14, TypeScript, and Tailwind CSS. Track your personal finances, analyze spending patterns, and manage your expenses effectively.
 
